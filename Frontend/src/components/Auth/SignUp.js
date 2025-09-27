@@ -21,16 +21,30 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match. Please try again.");
-      return;
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    window.alert("Passwords do not match. Please try again.");
+    return;
+  }
+
+  try {
+    await signup(formData); // Call backend
+    window.alert("Sign Up successful!");
+    navigate("/login");
+  } catch (err) {
+    // Map backend errors to friendly messages
+    let message = "Sign Up failed. Please try again.";
+    if (err.response && err.response.data && err.response.data.message) {
+      if (err.response.data.message === "Email exists") {
+        message = "This email is already registered.";
+      } else if (err.response.data.message === "Server error") {
+        message = "Something went wrong on the server. Please try later.";
+      }
     }
-    console.log("Form submitted:", formData);
-    await signup(formData);
-    alert("Sign Up successful!");
-    navigate("/login"); 
-  };
+    window.alert(message);
+  }
+};
 
   return (
     <div style={styles.container}>

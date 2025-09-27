@@ -9,14 +9,28 @@ export default function Login() {
   const navigate = useNavigate();
 
   const submit = async (e) => {
-    e.preventDefault();
-    try {
-      await login(email, password);
-      navigate("/dashboard");
-    } catch (err) {
-      alert("Login failed");
+  e.preventDefault();
+
+  try {
+    await login(email, password); // Call backend via AuthContext
+    window.alert("Login successful!");
+    navigate("/dashboard");
+  } catch (err) {
+    // Map backend errors to friendly messages
+    let message = "Login failed. Please try again.";
+
+    if (err.response && err.response.data && err.response.data.message) {
+      const backendMessage = err.response.data.message;
+      if (backendMessage === "Invalid credentials") {
+        message = "Incorrect email or password.";
+      } else if (backendMessage === "Server error") {
+        message = "Server error. Please try again later.";
+      }
     }
-  };
+
+    window.alert(message);
+  }
+};
 
   return (
     <div style={styles.container}>
