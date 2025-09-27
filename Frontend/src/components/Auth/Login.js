@@ -23,9 +23,7 @@ export default function Login() {
       <form onSubmit={submit} style={styles.card}>
         <div style={styles.icon}>📖</div>
         <h2 style={styles.title}>ResearchNest</h2>
-        <p style={styles.subtitle}>
-          Enter your email and password
-        </p>
+        <p style={styles.subtitle}>Enter your email and password</p>
 
         <input
           type="email"
@@ -49,8 +47,6 @@ export default function Login() {
         <p style={styles.signupText}>
           Don't have an account? <a href="/signup">Sign up</a>
         </p>
-
-
       </form>
     </div>
   );

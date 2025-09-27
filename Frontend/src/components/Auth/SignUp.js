@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext.js";
 
 const Signup = () => {
+  const { signup } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     role: "",
     password: "",
     confirmPassword: "",
   });
 
-  const roles = ["Student", "Professor", "Admin"];
+  const roles = ["Student", "Faculty"];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match. Please try again.");
       return;
     }
     console.log("Form submitted:", formData);
-    alert('Sign Up successful!');
+    await signup(formData);
+    alert("Sign Up successful!");
   };
 
   return (
@@ -34,13 +37,13 @@ const Signup = () => {
         <p style={styles.subtitle}>
           Join ResearchNest to track your research progress
         </p>
-        
+
         {/* Input fields using formData and handleChange */}
         <input
           type="text"
-          name="fullName"
+          name="name"
           placeholder="Full Name"
-          value={formData.fullName}
+          value={formData.name}
           onChange={handleChange}
           style={styles.input}
           required
@@ -57,23 +60,23 @@ const Signup = () => {
 
         {/* Role Dropdown */}
         <div style={styles.selectWrapper}>
-            <select
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              style={styles.select }
-              required
-            >
-              <option value="" disabled hidden >
-                Select Role
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            style={styles.select}
+            required
+          >
+            <option value="" disabled hidden>
+              Select Role
+            </option>
+            {roles.map((role) => (
+              <option key={role} value={role}>
+                {role}
               </option>
-              {roles.map((role) => (
-                <option key={role} value={role}>
-                  {role}
-                </option>
-              ))}
-            </select>
-            <span style={styles.selectArrow}></span>
+            ))}
+          </select>
+          <span style={styles.selectArrow}></span>
         </div>
 
         <input
@@ -86,7 +89,7 @@ const Signup = () => {
           minLength={6}
           required
         />
-        
+
         <input
           type="password"
           name="confirmPassword"
@@ -102,8 +105,10 @@ const Signup = () => {
         </button>
 
         <p style={styles.loginText}>
-          Already have an account? 
-          <a href="/login" style={styles.loginLink}>Sign in</a>
+          Already have an account?
+          <a href="/login" style={styles.loginLink}>
+            Sign in
+          </a>
         </p>
       </form>
     </div>
@@ -149,9 +154,9 @@ const styles = {
     fontSize: "14px",
   },
   selectWrapper: {
-    position: 'relative',
-    margin: '8px 0',
-    width: '100%'
+    position: "relative",
+    margin: "8px 0",
+    width: "100%",
   },
 
   select: {
@@ -161,25 +166,25 @@ const styles = {
     borderRadius: "8px",
     border: "1px solid #ddd",
     fontSize: "16px",
-    boxSizing: 'border-box',
-    appearance: 'none', 
-    cursor: 'pointer',
-    paddingRight: '30px', 
+    boxSizing: "border-box",
+    appearance: "none",
+    cursor: "pointer",
+    paddingRight: "30px",
   },
   selectArrow: {
-    position: 'absolute',
-    top: '50%',
-    right: '35px',
-    transform: 'translateY(-50%)',
-    pointerEvents: 'none',
-    width: '0', 
-    height: '0', 
-    borderLeft: '5px solid transparent',
-    borderRight: '5px solid transparent',
-    borderTop: '5px solid #666', 
+    position: "absolute",
+    top: "50%",
+    right: "35px",
+    transform: "translateY(-50%)",
+    pointerEvents: "none",
+    width: "0",
+    height: "0",
+    borderLeft: "5px solid transparent",
+    borderRight: "5px solid transparent",
+    borderTop: "5px solid #666",
   },
   button: {
-    width: "50%", 
+    width: "50%",
     padding: "14px",
     marginTop: "20px",
     borderRadius: "8px",
@@ -198,9 +203,9 @@ const styles = {
   loginLink: {
     color: "#1a1a1a",
     fontWeight: "600",
-    textDecoration: 'none',
-    marginLeft: '5px',
-  }
+    textDecoration: "none",
+    marginLeft: "5px",
+  },
 };
 
 export default Signup;
