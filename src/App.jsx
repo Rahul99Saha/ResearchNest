@@ -1,8 +1,8 @@
 // Frontend/src/App.jsx
 
 import React from 'react';
-import Navbar from './components/Navbar.jsx';
-import Profile from './pages/Profile.jsx';
+import Navbar from '../components/Navbar.jsx'
+import Profile from '../pages/Profile.jsx';
 
 function App() {
   return (

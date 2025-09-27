@@ -1,7 +1,7 @@
 // Frontend/components/ui/PersonalInformation.jsx
 
 import React from 'react';
-import Card from '.Card.jsx';
+import Card from './card.jsx';
 
 // Reusable Input Field component for display
 const InfoField = ({ label, value }) => (

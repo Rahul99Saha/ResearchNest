@@ -1,7 +1,7 @@
 // Frontend/components/ui/ProfileHeader.jsx
 
 import React from 'react';
-import Card from '.Card.jsx';
+import Card from './card.jsx';
 
 function ProfileHeader() {
   return (

@@ -1,7 +1,7 @@
 // Frontend/components/ui/AccountSettings.jsx
 
 import React from 'react';
-import Card from '.Card.jsx';
+import Card from './card.jsx';
 
 const SettingItem = ({ title, description, buttonText }) => (
   <div 

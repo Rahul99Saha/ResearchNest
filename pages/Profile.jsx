@@ -1,11 +1,11 @@
 // Frontend/pages/Profile.jsx
 
 import React from 'react';
-import Card from '..Card.jsx'; // Assume a reusable Card component
+import Card from '../components/ui/card.jsx'; // Assume a reusable Card component
 import ProfileHeader from '../components/ui/ProfileHeader.jsx';
-import PersonalInformation from '../components/ui/PersonalInformation.jsx';
+import PersonalInformation from '../components/ui/ProfileInformation.jsx';
 import QuickStats from '../components/ui/QuickStats.jsx';
-import AccountSettings from '../components/ui/AccountSettings.jsx';
+import AccountSettings from '../components/ui/AccountSetting.jsx';
 
 function Profile() {
   return (
