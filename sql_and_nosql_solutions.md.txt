@@ -1,0 +1,97 @@
+sql_and_nosql_solutions
+-------------------------
+
+# Login & Signup Queries
+
+1. SQL Approach
+
+SQL Table
+---------------
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('Student','Faculty','Admin') DEFAULT 'Student',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Insert (Signup)
+--------------
+INSERT INTO Users (name, email, password_hash, role)
+VALUES ('Alice', 'alice@example.com', 'hashed_password_here', 'Student');
+
+Retrieve (Login)
+-----------------
+SELECT user_id, name, email, role, password_hash
+FROM Users
+WHERE email = 'alice@example.com';
+
+
+(Password verification happens in backend using hashing, e.g. bcrypt.)
+
+
+---
+
+2. MongoDB Approach
+
+MongoDB Collection Structure
+
+db.users.insertOne({
+  name: "Alice",
+  email: "alice@example.com",
+  passwordHash: "hashed_password_here",
+  role: "Student",
+  createdAt: new Date()
+});
+```
+
+MongoDB Queries
+Insert (Signup)
+----------------
+db.users.insertOne({
+  name: "Alice",
+  email: "alice@example.com",
+  passwordHash: "hashed_password_here",
+  role: "Student",
+  createdAt: new Date()
+});
+
+
+Retrieve (Login)
+------------------
+db.users.findOne({ email: "alice@example.com" });
+
+---
+
+3. Comparison (Login/Signup)
+
+| Feature                | SQL                          | MongoDB                       |
+| ---------------------- | ---------------------------- | ----------------------------- |
+| Schema                 | Strict (fixed columns)       | Flexible (document-based)     |
+| Uniqueness Constraint  | `UNIQUE` constraint on email | Must manually enforce (index) |
+| Authentication Queries | Straightforward SELECT       | Straightforward `findOne`     |
+| Transactions           | Strong ACID compliance       | Eventual consistency possible |
+| Scaling                | Vertical (harder to scale)   | Horizontal (easier to scale)  |
+
+---
+
+Recommendation for ResearchNest
+--------------------------------
+
+SQL (MySQL/PostgreSQL) is better for login and signup because:
+
+  * User authentication requires strict constraints (unique email, strong transactions).
+  * Schema is stable (user data doesn’t change often).
+  * ACID guarantees ensure reliability (no duplicate users).
+
+MongoDB is better for the Progress Tracker (hierarchical milestones, tasks, subtasks).
+
+So, a hybrid approach works best:
+-----------------------------------------
+* Use SQL for Authentication & User Management.
+* Use MongoDB for Progress Tracker and hierarchical academic data.
+
+---
+
+Do you want me to **write ready-to-use Mongoose model (MongoDB) + Sequelize model (SQL)** for the `User` table/collection so you can plug them directly into your MERN app?
