@@ -1,11 +1,13 @@
 // Frontend/pages/Profile.jsx
 
 import React from 'react';
-import Card from '../components/ui/card.jsx'; // Assume a reusable Card component
+// ⚠️ Recommended path corrections for consistency (e.g., Card.jsx, AccountSettings.jsx)
+import Card from '../components/ui/card.jsx'; 
 import ProfileHeader from '../components/ui/ProfileHeader.jsx';
 import PersonalInformation from '../components/ui/ProfileInformation.jsx';
 import QuickStats from '../components/ui/QuickStats.jsx';
 import AccountSettings from '../components/ui/AccountSetting.jsx';
+import ResearchInformation from '../components/ui/ResearchInformation.jsx';
 
 function Profile() {
   return (
@@ -28,9 +30,16 @@ function Profile() {
         {/* Right Column (Information and Settings) */}
         <div style={{ flex: '1' }}>
           <PersonalInformation />
+          
           <div style={{ marginTop: '30px' }}>
             <AccountSettings />
           </div>
+          
+          {/* ⬅️ NEW BLOCK ADDED HERE */}
+          <div style={{ marginTop: '30px' }}>
+            <ResearchInformation />
+          </div>
+          
         </div>
 
       </div>

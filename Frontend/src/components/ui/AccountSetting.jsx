@@ -30,19 +30,9 @@ function AccountSettings() {
       subtitle="Manage your account preferences and security settings."
     >
       <SettingItem 
-        title="Email Notifications" 
-        description="Receive email updates about your research progress" 
-        buttonText="Configure" 
-      />
-      <SettingItem 
         title="Change Password" 
         description="Update your account password" 
         buttonText="Change" 
-      />
-      <SettingItem 
-        title="Two-Factor Authentication" 
-        description="Add an extra layer of security to your account" 
-        buttonText="Enable" 
       />
     </Card>
   );
