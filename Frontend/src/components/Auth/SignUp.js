@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext.js";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const { signup } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",
@@ -27,6 +29,7 @@ const Signup = () => {
     console.log("Form submitted:", formData);
     await signup(formData);
     alert("Sign Up successful!");
+    navigate("/login"); 
   };
 
   return (
