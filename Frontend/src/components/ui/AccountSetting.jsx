@@ -27,7 +27,7 @@ function AccountSettings() {
   return (
     <Card 
       title="Account Settings" 
-      subtitle="Manage your account preferences and security settings."
+      subtitle="Manage your password"
     >
       <SettingItem 
         title="Change Password" 

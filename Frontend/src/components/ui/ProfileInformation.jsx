@@ -21,11 +21,24 @@ function PersonalInformation() {
       title="Personal Information" 
       subtitle="Update your personal details and contact information."
     >
-      {/* <div style={{ position: 'absolute', top: '20px', right: '20px' }}>
-        <button style={{ padding: '5px 10px', cursor: 'pointer' }}>
-          ✏️ Edit
+      {/* Top bar with title + Edit button aligned like AccountSettings */}
+      <div 
+        style={{ 
+          display: "flex", 
+          justifyContent: "flex-end", 
+          marginBottom: "15px" 
+        }}
+      >
+        <button 
+          style={{ 
+            padding: '8px 15px', 
+            cursor: 'pointer', 
+            minWidth: '100px' 
+          }}
+        >
+          Edit
         </button>
-      </div> */}
+      </div>
 
       <div style={{ display: 'flex', gap: '20px', marginBottom: '15px' }}>
         <InfoField label="Full Name" value="👤 John Doe" />

@@ -28,7 +28,7 @@ function ResearchInformation() {
           value="Machine Learning Applications in Healthcare" 
         />
         <InfoField 
-          label="Supervisor" 
+          label="Faculty" 
           value="Dr. Smith" 
         />
       </div>

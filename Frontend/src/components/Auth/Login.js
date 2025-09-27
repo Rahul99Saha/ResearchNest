@@ -9,28 +9,27 @@ export default function Login() {
   const navigate = useNavigate();
 
   const submit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    await login(email, password); // Call backend via AuthContext
-    window.alert("Login successful!");
-    navigate("/dashboard");
-  } catch (err) {
-    // Map backend errors to friendly messages
-    let message = "Login failed. Please try again.";
+    try {
+      await login(email, password);
+      window.alert("Login successful!");
+      navigate("/dashboard");
+    } catch (err) {
+      let message = "Login failed. Please try again.";
 
-    if (err.response && err.response.data && err.response.data.message) {
-      const backendMessage = err.response.data.message;
-      if (backendMessage === "Invalid credentials") {
-        message = "Incorrect email or password.";
-      } else if (backendMessage === "Server error") {
-        message = "Server error. Please try again later.";
+      if (err.response?.data?.message) {
+        const backendMessage = err.response.data.message;
+        if (backendMessage === "Invalid credentials") {
+          message = "Incorrect email or password.";
+        } else if (backendMessage === "Server error") {
+          message = "Server error. Please try again later.";
+        }
       }
-    }
 
-    window.alert(message);
-  }
-};
+      window.alert(message);
+    }
+  };
 
   return (
     <div style={styles.container}>
@@ -59,7 +58,7 @@ export default function Login() {
         </button>
 
         <p style={styles.signupText}>
-          Don't have an account? <a href="/signup">Sign up</a>
+          Don&apos;t have an account? <a href="/signup">Sign up</a>
         </p>
       </form>
     </div>
@@ -76,8 +75,9 @@ const styles = {
     padding: "20px",
   },
   card: {
-    width: "360px",
-    padding: "30px",
+    width: "100%",
+    maxWidth: "400px", // responsive width
+    padding: "25px",
     borderRadius: "12px",
     backgroundColor: "#fff",
     boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
@@ -90,6 +90,7 @@ const styles = {
   title: {
     margin: "10px 0",
     fontWeight: "bold",
+    fontSize: "22px",
   },
   subtitle: {
     fontSize: "14px",
@@ -97,15 +98,16 @@ const styles = {
     marginBottom: "20px",
   },
   input: {
-    width: "80%",
+    width: "100%",
     padding: "12px",
     margin: "8px 0",
     borderRadius: "8px",
     border: "1px solid #ddd",
     fontSize: "14px",
+    boxSizing: "border-box",
   },
   button: {
-    width: "50%",
+    width: "100%",
     padding: "12px",
     marginTop: "15px",
     borderRadius: "8px",
@@ -119,13 +121,18 @@ const styles = {
     marginTop: "15px",
     fontSize: "14px",
   },
-  demo: {
-    marginTop: "20px",
-    padding: "10px",
-    backgroundColor: "#f1f1f1",
-    borderRadius: "8px",
-    fontSize: "13px",
-    textAlign: "left",
-  },
 };
 
+// ✅ Extra: add global CSS for mobile adjustments
+const responsiveCSS = `
+@media (max-width: 480px) {
+  h2 { font-size: 18px !important; }
+  input { font-size: 13px !important; }
+  button { font-size: 14px !important; }
+}
+`;
+
+// inject styles dynamically
+const styleTag = document.createElement("style");
+styleTag.innerHTML = responsiveCSS;
+document.head.appendChild(styleTag);
