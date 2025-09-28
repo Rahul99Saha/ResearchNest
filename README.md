@@ -80,6 +80,7 @@ ResearchNest/
 - Access the frontend at `http://localhost:3000`.
 - Register or log in as a user.
 - Use the dashboard to manage research progress and profiles.
+- Use the profile to see the profile page of the user.
 
 ## MERN Implementation Details
 ResearchNest uses the MERN stack:
