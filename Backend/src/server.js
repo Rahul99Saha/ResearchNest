@@ -4,7 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import progressRoutes from "./routes/progress.js";
-import profileRoutes from './routes/profile.js';
+import profileRoutes from "./routes/profile.js";
+import facultyRoutes from "./routes/faculty.js";
 import connectDB from "./config/db.js"; // default export assumed
 
 dotenv.config(); // Load .env variables
@@ -22,7 +23,8 @@ app.use(
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/progress", progressRoutes);
-app.use('/api/profile', profileRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/faculty", facultyRoutes);
 
 const PORT = process.env.PORT || 5001;
 

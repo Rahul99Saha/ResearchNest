@@ -4,14 +4,12 @@ import axios from "axios";
 // Assuming AuthContext provides user info and token access
 import { AuthContext } from "../contexts/AuthContext.js";
 
-import Card from "../components/ui/card.jsx";
 import ProfileHeader from "../components/ui/ProfileHeader.jsx";
 import PersonalInformation from "../components/ui/ProfileInformation.jsx"; // Renamed from ProfileInformation
 import QuickStats from "../components/ui/QuickStats.jsx";
 import AccountSettings from "../components/ui/AccountSetting.jsx";
-import ResearchInformation from "../components/ui/ResearchInformation.jsx";
 
-const API_URL = "http://localhost:5001/api"; // Ensure this matches your server port
+const API_URL = process.env.REACT_APP_API_URL; // Ensure this matches your server port
 
 function Profile() {
   const { user } = useContext(AuthContext); // Get user for auth
@@ -35,6 +33,7 @@ function Profile() {
         },
       });
 
+      console.log(res.data.data);
       setProfileData(res.data.data);
       setLoading(false);
     } catch (err) {
@@ -68,27 +67,16 @@ function Profile() {
 
   if (error || !profileData) {
     return (
-      <div
-        style={{ textAlign: "center", padding: "50px", color: "red" }}
-      >
+      <div style={{ textAlign: "center", padding: "50px", color: "red" }}>
         Error: {error || "Profile data is missing."}
       </div>
     );
   }
 
   // Destructure for cleaner access
-  const {
-    personalInfo,
-    role,
-    researchProfile,
-    academicInfo,
-    facultyInfo,
-    memberSince,
-    lastLogin,
-    userId,
-  } = profileData;
+  const { role, researchProfile, memberSince, lastLogin, userId } = profileData;
 
-  const isStudent = role === "student";
+  const isStudent = role === "Student";
 
   return (
     <div
@@ -99,9 +87,7 @@ function Profile() {
         fontFamily: "sans-serif",
       }}
     >
-      <h1 style={{ fontSize: "1.8rem", marginBottom: "10px" }}>
-        Profile
-      </h1>
+      <h1 style={{ fontSize: "1.8rem", marginBottom: "10px" }}>Profile</h1>
       <p style={{ color: "#666", fontSize: "1rem" }}>
         Manage your account settings and personal information.
       </p>
@@ -118,8 +104,8 @@ function Profile() {
         <div style={{ flex: "1 1 300px", maxWidth: "350px" }}>
           {/* PASS DATA */}
           <ProfileHeader
-            fullName={`${personalInfo.firstName} ${personalInfo.lastName}`}
-            email={personalInfo.email}
+            name={(user && user.name) || "Student"}
+            email={(user && user.name) || "test@gmail.com"}
             role={role}
           />
 
@@ -128,6 +114,7 @@ function Profile() {
             <QuickStats
               memberSince={memberSince}
               lastLogin={lastLogin}
+              role={role}
               researchProgress={researchProfile.researchProgress || 0} // Assuming this field exists
             />
           </div>
@@ -137,25 +124,16 @@ function Profile() {
         <div style={{ flex: "2 1 600px", minWidth: "300px" }}>
           {/* PASS DATA AND HANDLER */}
           <PersonalInformation
-            personalInfo={personalInfo}
-            role={role}
-            userId={userId}
+            name={user.name}
+            role={user.role}
+            email={user.email}
+            userID={user.id}
             onSuccessUpdate={handleProfileUpdate}
           />
 
           <div style={{ marginTop: "30px" }}>
             {/* PASS HANDLER */}
             <AccountSettings onSuccessUpdate={handleProfileUpdate} />
-          </div>
-
-          <div style={{ marginTop: "30px" }}>
-            {/* PASS DATA AND HANDLER */}
-            <ResearchInformation
-              researchProfile={researchProfile}
-              academicInfo={isStudent ? academicInfo : facultyInfo}
-              isStudent={isStudent}
-              onSuccessUpdate={handleProfileUpdate}
-            />
           </div>
         </div>
       </div>

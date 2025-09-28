@@ -378,3 +378,522 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+/* --- Styles for Expanded Student Card --- */
+.student-card.is-expanded {
+    grid-column: 1 / -1;
+    /* Make the expanded card span the full width */
+}
+
+/* --- Styles for Progress Tree Component --- */
+.progress-tree-container {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 16px;
+    padding-top: 16px;
+    text-align: left;
+}
+
+.no-progress-note {
+    color: #666;
+    font-style: italic;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.tree-node {
+    padding-left: 20px;
+    margin-bottom: 8px;
+    border-left: 2px solid #f0f0f0;
+}
+
+.tree-node .node-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.tree-node.milestone {
+    padding-left: 0;
+    border-left: none;
+    font-size: 1.05em;
+}
+
+.tree-node.stage {
+    margin-left: 15px;
+}
+
+.tree-node.task {
+    margin-left: 30px;
+}
+
+.tree-node.subtask {
+    margin-left: 45px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.tree-node.subtask .node-header {
+    font-weight: normal;
+}
+
+
+/* --- Styles for Node Status Badges --- */
+.node-status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.node-status-badge.completed {
+    background-color: #28a745;
+}
+
+.node-status-badge.in-progress {
+    background-color: #007bff;
+}
+
+.node-status-badge.locked {
+    background-color: #6c757d;
+}
+
+/* === Global Styles & Variables === */
+:root {
+    --primary-color: #4a90e2;
+    --success-color: #28a745;
+    --warning-color: #f5a623;
+    --danger-color: #d0021b;
+    --light-gray: #f4f7fa;
+    --medium-gray: #e4e8eb;
+    --dark-gray: #4a4a4a;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-radius: 12px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.faculty-dashboard-container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+}
+
+/* === Header === */
+.faculty-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--medium-gray);
+    padding-bottom: 1.5rem;
+}
+
+.faculty-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin: 0 0 0.5rem 0;
+}
+
+.faculty-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* === Overview Cards === */
+.faculty-overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+    font-weight: 500;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+.large-number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin: 0.5rem 0;
+}
+
+.card-info {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* === Student Overview & Filters === */
+.student-overview-section {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.section-header p {
+    color: #666;
+}
+
+.student-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    flex-grow: 1;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.search-bar input,
+.status-dropdown {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-bar input:focus,
+.status-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.status-dropdown {
+    padding-left: 1rem;
+    min-width: 200px;
+}
+
+
+/* === Student Cards Grid === */
+.student-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.student-card {
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.student-card.is-expanded {
+    grid-column: 1 / -1;
+    /* Make the expanded card span the full width */
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);
+}
+
+.student-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+}
+
+.student-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.student-info p {
+    margin: 0;
+    color: #666;
+}
+
+.student-status-badge {
+    margin-left: auto;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.student-status-badge.on-track {
+    background-color: var(--primary-color);
+}
+
+.student-status-badge.ahead {
+    background-color: var(--success-color);
+}
+
+.student-status-badge.at-risk {
+    background-color: var(--warning-color);
+}
+
+.student-status-badge.behind {
+    background-color: var(--danger-color);
+}
+
+.student-progress-section {
+    margin-bottom: 1.5rem;
+}
+
+.student-progress-section p {
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+}
+
+.student-progress-bar-outer {
+    background-color: var(--medium-gray);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.student-progress-bar-inner {
+    background-color: var(--primary-color);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-percentage {
+    float: right;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    color: #555;
+}
+
+.student-details-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.student-details-row p {
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+.student-details-row span {
+    font-weight: 400;
+}
+
+.view-details-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-details-btn:hover {
+    background-color: #357ABD;
+}
+
+
+/* === Progress Tree & Override Styles === */
+.progress-tree-container {
+    border-top: 1px solid var(--medium-gray);
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    text-align: left;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.no-progress-note {
+    color: #666;
+    font-style: italic;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.tree-node {
+    padding-left: 25px;
+    margin: 0.5rem 0;
+    border-left: 2px solid #e0e4e8;
+    position: relative;
+}
+
+.tree-node::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 12px;
+    width: 15px;
+    height: 2px;
+    background-color: #e0e4e8;
+}
+
+.node-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 4px 0;
+}
+
+.node-title {
+    flex-grow: 1;
+}
+
+.tree-node.milestone {
+    padding-left: 0;
+    border-left: none;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.tree-node.milestone::before {
+    display: none;
+}
+
+.node-status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.node-status-badge.completed {
+    background-color: var(--success-color);
+}
+
+.node-status-badge.in-progress {
+    background-color: var(--primary-color);
+}
+
+.node-status-badge.locked {
+    background-color: #6c757d;
+}
+
+.override-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.override-select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.8rem;
+}
+
+.override-btn {
+    padding: 4px 10px;
+    border: none;
+    background-color: #555;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.override-btn:hover {
+    background-color: #333;
+}
+
+.no-students-found {
+    text-align: center;
+    padding: 2rem;
+    color: #777;
+    grid-column: 1 / -1;
+}
+
+.loading-spinner,
+.error-message {
+    text-align: center;
+    padding: 4rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.error-message {
+    color: var(--danger-color);
+}
