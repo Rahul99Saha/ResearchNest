@@ -1,147 +1,175 @@
-## ResearchNest
+# 🌱 ResearchNest
 
-A full-stack web application for managing research progress, profiles, and collaboration between faculty and students.
+> **A full-stack MERN application for managing research progress, profiles, and collaboration between faculty and students.**
 
-The latest code for this project can be found at this git repo link - https://github.com/Rahul99Saha/ResearchNest
+🔗 Latest Code: [ResearchNest GitHub Repo](https://github.com/Rahul99Saha/ResearchNest)
 
-## Features
+---
 
-- User authentication (login/signup)
-- Role-based dashboards for faculty and students
-- Progress tracking and visualization
-- Profile management
-- RESTful API backend
+## ✨ Features
 
-## Technologies Used
+- 🔐 **User Authentication** — Signup/Login with JWT
+- 🎭 **Role-Based Dashboards** — Separate views for Faculty and Students
+- 📊 **Progress Tracking** — Milestones, Stages, Tasks, Subtasks
+- 👤 **Profile Management** — Academic & Research profiles
+- 🌐 **RESTful API** — Clean separation between frontend & backend
 
-- **Backend:** Node.js, Express, MongoDB, dotenv, CORS
-- **Frontend:** React, Context API, CSS
+---
 
-## Folder Structure
+## 🛠️ Tech Stack
 
+**Backend:** `Node.js` · `Express` · `MongoDB` · `dotenv` · `CORS`
+**Frontend:** `React` · `Context API` · `Tailwind/CSS`
+
+---
+
+## 📂 Project Structure
+
+```
 ResearchNest/
 ├── Backend/
-│ ├── src/
-│ │ ├── controllers/
-│ │ ├── middleware/
-│ │ ├── models/
-│ │ ├── routes/
-│ │ ├── config/
-│ │ ├── seed/
-│ │ ├── tests/
-│ │ ├── utils/
-│ │ └── server.js
-│ └── package.json
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── config/
+│   │   ├── seed/
+│   │   ├── tests/
+│   │   ├── utils/
+│   │   └── server.js
+│   └── package.json
+│
 ├── Frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── contexts/
-│ │ ├── pages/
-│ │ ├── api.js
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── public/
-│ └── package.json
+│   ├── src/
+│   │   ├── components/
+│   │   ├── contexts/
+│   │   ├── pages/
+│   │   ├── api.js
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── public/
+│   └── package.json
+│
 └── sql_and_nosql_solutions.md.txt
+```
 
-## Setup Instructions
+---
 
-### Backend
+## ⚡ Setup Instructions
 
-1. Navigate to the Backend folder:
+### 🔹 Backend
 
-   cd Backend
+```bash
+cd Backend
+npm install
+```
 
-2. Install dependencies:
+1. Create a `.env` file with variables like:
 
-   npm install
+   ```env
+   MONGO_URI=your_mongo_uri
+   PORT=5001
+   JWT_SECRET=your_secret
+   JWT_EXPIRES_IN=7d
+   ```
 
-3. Create a `.env` file with your environment variables (e.g., MongoDB URI, PORT).
-4. Start the server:
+2. Start server:
 
+   ```bash
    npm start
+   ```
 
-   The backend runs on `http://localhost:5001` by default.
+➡ Runs on **[http://localhost:5001](http://localhost:5001)**
 
-### Frontend
+---
 
-1. Navigate to the Frontend folder:
+### 🔹 Frontend
 
-   cd Frontend
+```bash
+cd Frontend
+npm install
+npm start
+```
 
-2. Install dependencies:
+➡ Runs on **[http://localhost:3000](http://localhost:3000)**
 
-   npm install
+---
 
-3. Start the React app:
+## 🚀 Usage
 
-   npm start
+1. Open the frontend at `http://localhost:3000`.
+2. Register or log in as a student/faculty.
+3. Access **dashboards** to track/manage progress.
+4. Edit and view user **profiles**.
 
-   The frontend runs on `http://localhost:3000` by default.
+---
 
-## Usage
+## 🔑 Key Implementation Details
 
-- Access the frontend at `http://localhost:3000`.
-- Register or log in as a user.
-- Use the dashboard to manage research progress and profiles.
-- Use the profile to see the profile page of the user.
+### 📌 Backend API Routes
 
-## MERN Implementation Details
+- `/api/auth` — Register & Login
+- `/api/profile` — Profile management
+- `/api/progress` — Track & update research progress
 
-ResearchNest uses the MERN stack:
+### 📌 Frontend Components
 
-- **MongoDB**: Stores user, profile, and progress data in a flexible document structure.
-- **Express.js**: Handles RESTful API endpoints, authentication, and business logic.
-- **React.js**: Provides interactive dashboards and profile management for students and faculty.
-- **Node.js**: Runs the backend server and connects all components.
+- `Dashboard/StudentDashboard.js` · `Dashboard/FacultyDashboard.js`
+- `Auth/Login.js` · `Auth/SignUp.js`
+- `Profile.js`
 
-### Key Backend Endpoints
+---
 
-- `/api/auth` — User registration and login
-- `/api/profile` — Profile management and retrieval
-- `/api/progress` — Progress tracking and updates
+## 🧩 Design Decisions
 
-### Key Frontend Components
+- 🧑‍🤝‍🧑 **Role-Based Access** → Faculty & Student dashboards, scalable for Admins
+- 📈 **Progress Hierarchy** → `Milestones > Stages > Tasks > Subtasks`
+- 🔗 **RESTful API** → JSON-based client-server communication
+- 🎯 **React Context API** → Global state for authentication
+- 🛠️ **Reusable Components** → Consistent UI (Card, Button, Input)
+- 🔒 **Environment Variables** → Secured secrets in `.env`
+- ✅ **Testing Ready** → Basic backend tests, extendable
+- 🌱 **Seed Data Support** → Preload initial templates, users
+- ⚡ **Error Handling** → Centralized middleware for clean API responses
 
-- `Dashboard/StudentDashboard.js` and `Dashboard/FacultyDashboard.js` — Role-based dashboards
-- `Auth/Login.js` and `Auth/SignUp.js` — Authentication UI
-- `Profile.js` — Profile page with editable sections
+---
 
-## Design Decisions
-
-- **Role-based Access**: Separate dashboards and permissions for students and faculty. Admin role can be added for future scalability.
-- **Progress Hierarchy**: Milestones, stages, tasks, and subtasks are modeled as nested objects for flexible tracking and easy progress propagation.
-- **RESTful API**: Clean separation between frontend and backend via REST endpoints. All data exchange is in JSON format.
-- **Context API**: Used for global authentication state in React, enabling protected routes and user session management.
-- **Reusable UI Components**: Card, Button, Input, etc. for consistent design and maintainability.
-- **Environment Variables**: Sensitive data (DB URI, JWT secret) is managed via `.env` files and never hardcoded.
-- **Testing**: Basic test structure provided for backend authentication. Extendable for more endpoints and frontend components.
-- **Seeding**: Optional seed script for initial database population (students, faculty, templates).
-- **Error Handling**: Centralized error handler for backend API responses.
-
-## Solution Diagram
+## 📊 Solution Diagram
 
 ```
 +-------------------+        +-------------------+        +-------------------+
 |   React Frontend  | <----> |   Express Server  | <----> |   MongoDB         |
-|  (Student/Faculty)|        |   (Node.js)       |        |   (Database)      |
+| (Student/Faculty) |        |     (Node.js)     |        |   (Database)      |
 +-------------------+        +-------------------+        +-------------------+
         |                        |                            |
         |  REST API calls        |  Mongoose Models           |
         +----------------------->+--------------------------->+
-
-User <-> AuthContext <-> API.js <-> Express <-> Mongoose <-> MongoDB
 ```
 
-## Assumptions
+👉 Flow: **User ↔ AuthContext ↔ API.js ↔ Express ↔ Mongoose ↔ MongoDB**
 
-- All users are either students or faculty; admin role is reserved for future use.
-- Each student is supervised by one faculty member; faculty can supervise multiple students.
-- Progress is tracked hierarchically: milestones > stages > tasks > subtasks.
-- Authentication uses JWT tokens stored in localStorage.
-- MongoDB is available and accessible at the URI specified in `.env`.
-- Frontend and backend run on separate ports (`3000` and `5001` respectively) during development.
-- Email addresses are unique for all users.
-- Initial data (users, templates) have to be seeded for demo/testing purposes.
-- No file uploads or external integrations are implemented in this version.
-- All API requests are assumed to be from trusted frontend clients (CORS is restricted to localhost).
+---
+
+## 📌 Assumptions
+
+- Students have one supervisor; faculty can supervise many.
+- Progress is always hierarchical.
+- JWT tokens stored in `localStorage`.
+- MongoDB must be running & accessible via `.env` URI.
+- Unique email for every user.
+- CORS restricted to localhost in dev.
+- No file uploads/external services yet.
+
+---
+
+## 🎯 Future Improvements
+
+- ✅ Admin role for user & progress oversight
+- 📁 File upload support (papers, reports)
+- 🔔 Notifications & reminders
+- 📊 Analytics dashboard for supervisors
+
+---
+
+✨ **ResearchNest: Helping students & faculty track research progress seamlessly.**
