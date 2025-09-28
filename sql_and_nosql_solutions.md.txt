@@ -87,11 +87,11 @@ db.users.findOne({ email: "alice@example.com" });
 
 - **MongoDB** is better for the **Progress Tracker** (hierarchical milestones, tasks, subtasks).
 
-✅ **Hybrid approach** works best:
+**Hybrid approach** works best:
 - Use **SQL** for Authentication & User Management.  
 - Use **MongoDB** for Progress Tracker and hierarchical academic data.  
 
----
+--
 
 ## Progress Tracker Queries
 
@@ -274,6 +274,6 @@ db.users.findOne({ _id: userId }).populate('researchProfile.Faculty');
   - Progress Tracker  
   - Profile Management (hierarchical, nested structures)  
 
-✅ **MERN stack with hybrid SQL + NoSQL** is best for ResearchNest.  
+**MERN stack with hybrid SQL + NoSQL** is best for ResearchNest.  
 - SQL ensures reliable authentication.  
 - MongoDB ensures flexible, efficient handling of hierarchical and profile data.  
