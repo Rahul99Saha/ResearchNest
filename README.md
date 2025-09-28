@@ -2,6 +2,8 @@
 
 A full-stack web application for managing research progress, profiles, and collaboration between faculty and students.
 
+The latest code for this project can be found at this git repo link - https://github.com/Rahul99Saha/ResearchNest
+
 ## Features
 - User authentication (login/signup)
 - Role-based dashboards for faculty and students
