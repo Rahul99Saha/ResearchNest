@@ -160,8 +160,41 @@ npm start
 - Unique email for every user.
 - CORS restricted to localhost in dev.
 - No file uploads/external services yet.
+- The environment variables that we have used across the frontend and the backend are not present here. We are assuming that the user will create them when he clones this project.
+  
+# Backend Environment Variables
 
----
+Create a `.env` file in the **backend root directory** with the following content:
+
+```env
+MONGO_URI=mongodb://127.0.0.1:27017/researchnest
+PORT=5001
+JWT_SECRET=supersecretkey
+JWT_EXPIRES_IN=7d
+```
+
+## Variable Details
+
+* **MONGO_URI**: MongoDB connection string (local or cloud).
+* **PORT**: Port number on which the backend server will run.
+* **JWT_SECRET**: Secret key used for signing JWT tokens (keep this safe!).
+* **JWT_EXPIRES_IN**: Expiration time for JWT tokens (e.g., `7d`, `1h`, `30m`).
+
+
+# Frontend Environment Variables
+
+Create a `.env` file in the **frontend root directory** with the following content:
+
+```env
+REACT_APP_API_URL=http://localhost:5001/api
+```
+
+## Variable Details
+
+* **REACT_APP_API_URL**: Base URL for connecting the React frontend to the backend API.
+
+  * In development: `http://localhost:5001/api`
+  * In production: Replace with your deployed backend API URL.
 
 ## 🎯 Future Improvements
 
