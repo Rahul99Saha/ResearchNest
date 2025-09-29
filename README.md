@@ -161,7 +161,7 @@ npm start
 - CORS restricted to localhost in dev.
 - No file uploads/external services yet.
 - The environment variables that we have used across the frontend and the backend are not present here. We are assuming that the user will create them when he clones this project.
-  
+
 # Backend Environment Variables
 
 Create a `.env` file in the **backend root directory** with the following content:
@@ -175,11 +175,10 @@ JWT_EXPIRES_IN=7d
 
 ## Variable Details
 
-* **MONGO_URI**: MongoDB connection string (local or cloud).
-* **PORT**: Port number on which the backend server will run.
-* **JWT_SECRET**: Secret key used for signing JWT tokens (keep this safe!).
-* **JWT_EXPIRES_IN**: Expiration time for JWT tokens (e.g., `7d`, `1h`, `30m`).
-
+- **MONGO_URI**: MongoDB connection string (local or cloud).
+- **PORT**: Port number on which the backend server will run.
+- **JWT_SECRET**: Secret key used for signing JWT tokens (keep this safe!).
+- **JWT_EXPIRES_IN**: Expiration time for JWT tokens (e.g., `7d`, `1h`, `30m`).
 
 # Frontend Environment Variables
 
@@ -191,10 +190,15 @@ REACT_APP_API_URL=http://localhost:5001/api
 
 ## Variable Details
 
-* **REACT_APP_API_URL**: Base URL for connecting the React frontend to the backend API.
+- **REACT_APP_API_URL**: Base URL for connecting the React frontend to the backend API.
 
-  * In development: `http://localhost:5001/api`
-  * In production: Replace with your deployed backend API URL.
+  - In development: `http://localhost:5001/api`
+  - In production: Replace with your deployed backend API URL.
+
+## MERGE CONFLICT CREATION AND RESOLUTION:
+
+1. Hussain has created a test merge conflict when merging from the branch `hussain-conflict` to main. He has resolved it using the vs code editor.
+   THe commit which solves it is: `9244e7766f9a32f2a14d698970b8f8d5d5ebf709`
 
 ## 🎯 Future Improvements
 
