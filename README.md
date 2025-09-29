@@ -77,7 +77,7 @@ npm install
 2. Start server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 ➡ Runs on **[http://localhost:5001](http://localhost:5001)**
